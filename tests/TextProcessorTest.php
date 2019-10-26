@@ -26,4 +26,9 @@ class TextProcessorTest extends \PHPUnit\Framework\TestCase {
     function it_gets_correct_sentence_count() {
         $this->assertEquals(4, $this->processor->sentenceCount());
     }
+
+    /** @test */
+    function it_gets_correct_punctuation_count() {
+        $this->assertEquals(92, $this->processor->punctuationCount());
+    }
 }

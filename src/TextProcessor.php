@@ -25,4 +25,12 @@ class TextProcessor {
 
         return 0;
     }
+
+    public function punctuationCount() {
+            if ( preg_match_all('@[^\w]+@', $this->text, $matches)) {
+            return count($matches[0]);
+        }
+
+        return 0;
+    }
 }
