@@ -11,26 +11,28 @@ class TextProcessor {
     }
 
     public function wordCount() {
-        if ( preg_match_all('@\w+@', $this->text, $matches)) {
-            return count($matches[0]);
-        }
-
-        return 0;
+        return $this->matchCount('@\w+@');
     }
 
     public function sentenceCount() {
-        if ( preg_match_all('@(?:^\s*\w+)|(?:\.\s*\w+)@', $this->text, $matches)) {
-            return count($matches[0]);
-        }
-
-        return 0;
+        return $this->matchCount('@(^\s*\w+)|(\.\s*\w+)@');
     }
 
     public function punctuationCount() {
-            if ( preg_match_all('@[^\w]+@', $this->text, $matches)) {
-            return count($matches[0]);
-        }
+        return $this->matchCount('@[^\w]+@');
+    }
 
-        return 0;
+    protected function matchCount($regex) {
+        $matches = $this->match($regex);
+
+        return count($matches);
+    }
+
+    protected function match($regex) {
+        $matched = preg_match_all($regex, $this->text, $matchArray);
+
+        $matches = $matched ? $matchArray[0] : [];
+
+        return $matches;
     }
 }
