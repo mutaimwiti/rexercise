@@ -12,9 +12,9 @@ class TextProcessorTest extends \PHPUnit\Framework\TestCase {
     {
         parent::setUp();
 
-        $this->processor = new TextProcessor(
-            get_text('lorem1.txt')
-        );
+        $text = get_text('lorem1.txt');
+
+        $this->processor = new TextProcessor($text);
     }
 
     /** @test */
