@@ -17,4 +17,12 @@ class TextProcessor {
 
         return 0;
     }
+
+    public function sentenceCount() {
+        if ( preg_match_all('@(?:^\s*\w+)|(?:\.\s*\w+)@', $this->text, $matches)) {
+            return count($matches[0]);
+        }
+
+        return 0;
+    }
 }
